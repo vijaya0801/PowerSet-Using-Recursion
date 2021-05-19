@@ -1,0 +1,41 @@
+//https://ide.geeksforgeeks.org/rDCeqhaDtk
+#include <stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
+string s="112";
+int n=s.size();
+vector<string> v;
+void printPermituations(string ss,int frq[])
+{
+
+    if(s.size()==ss.size())
+    {
+        v.push_back(ss);
+        
+        //cout<<ss<<endl;
+        return;
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(frq[i]==0)
+        {
+            frq[i]=1;
+            printPermituations(ss+s[i],frq);
+            frq[i]=0;
+        }
+    }
+}
+int main() {
+	string ss="";
+	int ans[n]={0};
+
+	printPermituations(ss,ans);
+   
+      sort(v.begin(), v.end());   
+    auto last = unique(v.begin(), v.end());  
+     v.erase(last, v.end());   
+    for (auto it : v)  
+      cout << it << " ";  
+    cout << "\n";  
+	return 0;
+}
